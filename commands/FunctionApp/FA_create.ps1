@@ -4,6 +4,20 @@
 
 
 ################################################################
+"Function App :"
+
+$Global:FAName = "alexeifa"
+# python node
+$Global:FARuntime = "python"
+# Linux Windows
+$Global:FAOSType = "Linux"
+$Global:FAConsumptionPlanLocation = "eastus"
+$Global:FAFunctionVersion = 3
+$Global:FAKeyName = "alexeifa"
+$Global:FAKeyType = "functionKeys"
+
+
+################################################################
 "CREATE A FUNCTION APP :"
 
 az functionapp create `
@@ -41,11 +55,6 @@ az functionapp keys set `
     --key-value $CDBKeys
 
 
-#######################################################################
-# Next step :
-
-# $script = "commands\StorageAccount\StorageAccount_create.ps1"
-# .$script
 
 
 

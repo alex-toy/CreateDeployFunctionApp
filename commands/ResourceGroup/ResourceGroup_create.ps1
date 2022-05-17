@@ -8,11 +8,7 @@
 az group create --name $RGName --location $RGLocation
 
 
-#######################################################################
-# Next step :
 
-$script = "commands\StorageAccount\StorageAccount_create.ps1"
-.$script
 
 
 

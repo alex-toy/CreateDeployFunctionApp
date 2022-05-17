@@ -2,6 +2,21 @@
 "Now running : " + $MyInvocation.MyCommand.Path
 "###############################################################"
 
+
+################################################################
+"Storage Account :"
+
+$Global:SAName = "flaskstorageaccount"
+#southcentralus centralus francecentral
+$Global:SALocation = $RGLocation
+$Global:SAKind = "BlockBlobStorage"
+$Global:SASKU = "Standard_LRS"
+$Global:SCName = "flask-images"
+$Global:SCAuthMode = "login"
+$Global:SCPublicAccess = "container"
+
+
+
 ################################################################
 "Create the block blob storage account :"
 
@@ -23,10 +38,5 @@ az storage container create `
  --public-access $SCPublicAccess
 
 
-#######################################################################
-# Next step :
-
-$script = "commands\CosmosDb\CosmosDb_create.ps1"
-.$script
 
 

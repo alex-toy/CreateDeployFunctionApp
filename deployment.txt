@@ -1,6 +1,3 @@
-################################################################
-#DEPLOYING TO THE VM :
-
 cd /path/to/web
 
 python3 -m venv .venv
@@ -11,11 +8,53 @@ source venv/bin/activate #mac
 
 pip install --upgrade pip 
 pip install -r requirements.txt
-pip install --upgrade pyodbc
-pip install flask_sqlalchemy flask_login  flask_session flask_wtf azure.storage.blob msal
 
-python application.py
+###############################################################################################################
+Bindings: Edit the function.json file for each function endpoint to include the connection details:
+{
+"scriptFile": "__init__.py",
+"bindings": [
+ {
+   "authLevel": "anonymous",
+   "type": "httpTrigger",
+   "direction": "in",
+   "name": "req",
+   "methods": [
+     "get"
+   ],
+   "connection":"MyDbConnection" #TO BE ADDED
+ },
+ {
+   "type": "http",
+   "direction": "out",
+   "name": "$return"
+ }
+]
+}
+###############################################################################################################
 
-#In a web browser, we can visit the public IP address. Type "exit" to disconnect from the VM
-<yourmachine>.<local>.cloudapp.azurestack.contoso.com:5000
 
+###############################################################################################################
+Ensure that the current local.settings.json file contains all settings from the 
+Functions App >> Settings >> Configuration in the portal
+###############################################################################################################
+
+
+###############################################################################################################
+# Create a virtual environment in the local
+pip install pipenv==2022.1.8
+# Install packages into the pipenv virtual environment and generates the Pipfile.lock with a specific set of the packages
+pipenv install --python 3.8
+python -m pipenv install
+# Activate the new virtual environment
+pipenv shell
+# Start the function. Port is optional to mention
+func start [-p 7071]
+###############################################################################################################
+
+
+
+###############################################################################################################
+# Re-publish - After making the change, publish the function again.
+func azure functionapp publish <function app name>
+###############################################################################################################

@@ -39,10 +39,3 @@ $json = Get-Content $file -Raw | ConvertFrom-Json
 $Global:CDBConnectionStrings = $json.connectionStrings[0].connectionString
 "CosmosDB Connection strings : " + $CDBConnectionStrings
 
-
-
-#######################################################################
-# Next step :
-
-$script = "commands\FunctionApp\FA_create.ps1"
-.$script
